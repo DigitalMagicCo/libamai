@@ -1,5 +1,17 @@
+// dllmain.cpp
+// dll invocation hooks
+//
+// Created by Josh Kennedy on 12 August 2020
+//
+// Amai
+// Copyright (C) 2020 DigitalMagic LLC. All rights reserved.
+//
+// Licensed under Apache 2.0 License.
+// See the LICENSE file at the project root.
+
 // dllmain.cpp : Defines the entry point for the DLL application.
-#include "pch.h"
+#define WIN32_LEAN_AND_MEAN
+#include <Windows.h>
 
 BOOL APIENTRY DllMain( HMODULE hModule,
                        DWORD  ul_reason_for_call,
@@ -16,4 +28,3 @@ BOOL APIENTRY DllMain( HMODULE hModule,
     }
     return TRUE;
 }
-
