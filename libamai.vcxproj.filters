@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\unistd">
+      <UniqueIdentifier>{ae2792c3-006e-4a6d-8d84-a2d5a9236a17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\unistd">
+      <UniqueIdentifier>{07a0c974-46e6-4c08-9fe2-058eb144bc1c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\dllmain.cpp">
@@ -23,6 +29,12 @@
     </ClCompile>
     <ClCompile Include="src\amai_utility.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\__signal.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\unistd\alarm.c">
+      <Filter>Source Files\unistd</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -42,6 +54,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\amai_utility.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\unistd\alarm.h">
+      <Filter>Header Files\unistd</Filter>
+    </ClInclude>
+    <ClInclude Include="include\__signal.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

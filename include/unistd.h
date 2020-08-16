@@ -26,4 +26,8 @@
 #define	_POSIX_VERSION 200112L
 #define	_POSIX_ADVISORY_INFO 200112L
 
+// Functions are broken out into separate "modules" so things can be clean.
+
+#include "unistd/alarm.h"
+
 #endif
