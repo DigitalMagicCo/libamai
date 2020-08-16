@@ -17,18 +17,45 @@
 
 #include <Windows.h>
 
+#include <string>
+#include <vector>
+#include <sstream>
+
+static std::string errorString = "";
+static std::vector<HMODULE> locals;
+
+// Returns the last Win32 error, in string format. Returns an empty string if there is no error.
+std::string GetLastErrorAsString()
+{
+	// Get the error message, if any.
+	DWORD errorMessageID = ::GetLastError();
+	if (errorMessageID == 0)
+		return std::string(); // No error message has been recorded
+
+	LPSTR messageBuffer = nullptr;
+	size_t size = FormatMessageA(FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
+		NULL, errorMessageID, MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), (LPSTR)&messageBuffer, 0, NULL);
+
+	std::string message(messageBuffer, size);
+
+	// Free the buffer.
+	LocalFree(messageBuffer);
+
+	return message;
+}
+
 void* dlopen(const char* file, int mode)
 {
+	// If Windows fails to load the library, it displays a scary error message,
+	// and we don't want that.
+	UINT previousErrorMode = SetErrorMode(SEM_FAILCRITICALERRORS);
+
 	// If file is null, then we need to return a global handle for the current executable.
 	if (file == NULL)
 	{
 		// Passing NULL into GetModuleHandle returns a handle for the current executable.
 		return (void*)GetModuleHandle(NULL);
 	}
-
-	// If Windows fails to load the library, it displays a scary error message,
-	// and we don't want that.
-	UINT previousErrorMode = SetErrorMode(SEM_FAILCRITICALERRORS);
 
 	// Convert /'s to \'s for LoadLibraryEx
 	const char* imageFile = amaiConvertSlashes(file);
@@ -39,4 +66,49 @@ void* dlopen(const char* file, int mode)
 	SetErrorMode(previousErrorMode);
 
 	return (void*)image;
+}
+
+int dlclose(void* handle)
+{
+	if (handle == nullptr)
+	{
+		errorString = "Amai: dlclose() - Could not close handle because it was NULL.";
+
+		return -1;
+	}
+
+	HMODULE mod = (HMODULE)handle;
+
+	BOOL retVal = FreeLibrary(mod);
+
+	if (!retVal)
+	{
+		std::stringstream ss;
+		LPSTR modFileName = new char[MAX_PATH];
+
+		DWORD modFileNameSize = GetModuleFileNameA(mod, modFileName, MAX_PATH);
+
+		ss << "Amai: dlclose() - Unable to close handle to the library (" << modFileName << ") - Windows says: " << GetLastErrorAsString();
+
+		errorString = ss.str();
+
+		delete[] modFileName;
+		
+		// POSIX is 0 on success, but Win32 is non-zero on success.
+		return !retVal;
+	}
+
+	// POSIX is 0 on success, but Win32 is non-zero on success.
+	return !retVal;
+}
+
+char* dlerror()
+{
+	// If there are no errors, POSIX says to return a NULL string.
+	if (errorString == "")
+	{
+		return nullptr;
+	}
+
+	return const_cast<char*>(errorString.c_str());
 }
