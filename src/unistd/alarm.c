@@ -26,4 +26,5 @@ unsigned alarm(unsigned seconds)
 	}
 
 	// this is hard to impl on windows without involving threads....
+	return 0;
 }
