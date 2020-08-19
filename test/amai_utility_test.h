@@ -1,5 +1,5 @@
-// main.c
-// driver program for the unit tests.
+// amai_utility_test.h
+// unit tests for the amai_utility module
 //
 // Created by Josh Kennedy on 16 August 2020
 //
@@ -9,15 +9,11 @@
 // Licensed under Apache 2.0 License.
 // See the LICENSE file at the project root.
 
-#define DMUNIT_IMPL
+#pragma once
 
-#include "DMUnit.h"
+#ifndef DM_AMAI_AMAI_UTILITY_TEST_H_
+#define DM_AMAI_AMAI_UTILITY_TEST_H_
 
-#include "amai_utility_test.h"
+void runAmaiUtilityTests();
 
-int main(int argc, char* argv[])
-{
-	runAmaiUtilityTests();
-
-	return 0;
-}
+#endif
