@@ -16,7 +16,15 @@
 
 #include "amai_library.h"
 
+#if __cplusplus
+extern "C" {
+#endif
+
 // Converts forward slashes (/) to backslashes (\)
-AMAI_C_API const char* amaiConvertSlashes(const char* str);
+AMAI_API const char* amaiConvertSlashes(const char* str);
+
+#if __cplusplus
+}
+#endif
 
 #endif
