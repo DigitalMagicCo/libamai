@@ -17,23 +17,28 @@
 
 const char* amaiConvertSlashes(const char* str)
 {
-	if (!str) return nullptr;
+	char* newString;
+	size_t len = 0;
 
-	std::stringstream ss;
+	if (!str) return NULL;
+	
+	len = strlen(str);
 
-	size_t len = strlen(str);
+	newString = (char*)malloc(sizeof(char) * len + 1);
 
 	for (size_t i = 0; i < len; ++i)
 	{
 		if (str[i] == '/')
 		{
-			ss << "\\";
+			newString[i] = (char)0x5C; // backslash character
 		}
 		else
 		{
-			ss << str[i];
+			newString[i] = str[i];
 		}
 	}
 
-	return ss.str().c_str();
+	newString[len] = NULL;
+
+	return newString;
 }
