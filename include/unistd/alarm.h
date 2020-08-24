@@ -18,7 +18,7 @@
 
 // Warning! Windows doesn't support the core functionality
 //	of the alarm() function, which is SIGALRM
-// We emulate alarm with threads and funcptrs.
+// We may have to emulate alarm with threads and funcptrs.
 
 AMAI_API unsigned alarm(unsigned seconds); 
 

@@ -7,7 +7,7 @@
 int testForwardSlashesToBackSlashes()
 {
     const char* path = "./my/test/path/file.txt";
-    char* newPath = "";
+    const char* newPath = "";
 
     newPath = amaiConvertSlashes(path);
 

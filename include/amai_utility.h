@@ -20,7 +20,7 @@
 extern "C" {
 #endif
 
-// Converts forward slashes (/) to backslashes (\)
+// Converts forward slashes to backslashes for Win32 compat
 AMAI_API const char* amaiConvertSlashes(const char* str);
 
 #if __cplusplus

@@ -27,14 +27,14 @@
     <ClCompile Include="src\dlfcn.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\amai_utility.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\__signal.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\unistd\alarm.c">
       <Filter>Source Files\unistd</Filter>
+    </ClCompile>
+    <ClCompile Include="src\amai_utility.c">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -1,4 +1,4 @@
-// amai_utility.cpp
+// amai_utility.c
 // common utilities
 //
 // Created by Josh Kennedy on 14 August 2020
@@ -13,15 +13,17 @@
 
 #include "../include/amai_library.h"
 
-#include <sstream>
+#include <stddef.h>
+#include <stdlib.h>
+#include <string.h>
 
 const char* amaiConvertSlashes(const char* str)
 {
-	char* newString;
+	char* newString = NULL;
 	size_t len = 0;
-
-	if (!str) return NULL;
 	
+	if (!str) return NULL;
+
 	len = strlen(str);
 
 	newString = (char*)malloc(sizeof(char) * len + 1);

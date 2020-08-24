@@ -24,7 +24,7 @@
 #if _DEBUG
 #if _MSC_VER
 #include <intrin.h>
-#define BREAKPOINT() __debugbreak()
+#define BREAKPOINT() __debugbreak();
 #else
 #include <signal.h>
 #define BREAKPOINT() raise(SIGINT);
@@ -40,12 +40,12 @@
 #define TEST_SUCCESS 0
 #define TEST_FAIL 1
 
-#define __GET_ASSERTION_INFO() char* asinfo = malloc(512 * sizeof(char)); sprintf(asinfo, "in method %s on line %d in file %s", __FUNCSIG__, __LINE__, __FILE__);
+#define __GET_ASSERTION_INFO() char* asinfo = NULL; (char*)asinfo = malloc(512 * sizeof(char)); sprintf(asinfo, "in method %s on line %d in file %s", __FUNCSIG__, __LINE__, __FILE__);
 
 #define ASSERT_WITH_MESSAGE(msg) __GET_ASSERTION_INFO() printf("%s %s\n", \
-	msg, asinfo); BREAKPOINT(); return TEST_FAIL;
+	msg, asinfo); BREAKPOINT() return TEST_FAIL;
 
-#define ASSERT() ASSERT_WITH_MESSAGE("Assertion failed")
+#define ASSERT() ASSERT_WITH_MESSAGE("Assertion failed");
 
 #define ASSERT_TRUE(x) if (x != true) { ASSERT_WITH_MESSAGE("Expected true not false") }
 #define ASSERT_FALSE(x) if (x != false) { ASSERT_WITH_MESSAGE("Expected false not true") }
@@ -56,8 +56,8 @@
 #define ASSERT_EQUALS(x, y) if (x != y) { ASSERT_WITH_MESSAGE("Equality check failed.") }
 #define ASSERT_NOT_EQUALS(x, y) if (x == y) { ASSERT_WITH_MESSAGE("Inequality check failed.") }
 
-#define ASSERT_STR_EQUALS(x, y) if (strcmp(x, y) != 0) { char* stringWithVars = malloc(1024 * sizeof(char)); sprintf(stringWithVars, "String \"%s\" not equals \"%s\"", x, y); ASSERT_WITH_MESSAGE(stringWithVars) free(stringWithVars); }
-#define ASSERT_STR_NOT_EQUALS(x, y) if (strcmp(x, y) == 0) { char* stringWithVars = malloc(1024 * sizeof(char)); sprintf(stringWithVars, "String \"%s\" equals \"%s\"", x, y); ASSERT_WITH_MESSAGE(stringWithVars) free(stringWithVars); }
+#define ASSERT_STR_EQUALS(x, y) if (strcmp(x, y) != 0) { char* stringWithVars = NULL; stringWithVars = (char*)malloc(1024 * sizeof(char)); sprintf(stringWithVars, "String \"%s\" not equals \"%s\"", x, y); ASSERT_WITH_MESSAGE(stringWithVars) free(stringWithVars); }
+#define ASSERT_STR_NOT_EQUALS(x, y) if (strcmp(x, y) == 0) { char* stringWithVars = NULL; stringWithVars = (char*)malloc(1024 * sizeof(char)); sprintf(stringWithVars, "String \"%s\" equals \"%s\"", x, y); ASSERT_WITH_MESSAGE(stringWithVars) free(stringWithVars); }
 
 typedef int(*DMTestFunction)();
 
