@@ -29,5 +29,7 @@
 // Functions are broken out into separate "modules" so things can be clean.
 
 #include "unistd/alarm.h"
+#include "unistd/chdir.h"
+#include "unistd/getcwd.h"
 
 #endif
