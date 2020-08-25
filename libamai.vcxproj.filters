@@ -33,8 +33,17 @@
     <ClCompile Include="src\unistd\alarm.c">
       <Filter>Source Files\unistd</Filter>
     </ClCompile>
+    <ClCompile Include="src\unistd\chdir.c">
+      <Filter>Source Files\unistd</Filter>
+    </ClCompile>
     <ClCompile Include="src\amai_utility.c">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\amai_utility++.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\unistd\getcwd.c">
+      <Filter>Source Files\unistd</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -61,6 +70,15 @@
     </ClInclude>
     <ClInclude Include="include\__signal.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\unistd\chdir.h">
+      <Filter>Header Files\unistd</Filter>
+    </ClInclude>
+    <ClInclude Include="include\amai_utility++.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\unistd\getcwd.h">
+      <Filter>Header Files\unistd</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -155,19 +155,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\amai_utility++.cpp" />
     <ClCompile Include="src\amai_utility.c" />
     <ClCompile Include="src\dlfcn.cpp" />
     <ClCompile Include="src\dllmain.cpp" />
     <ClCompile Include="src\unistd\alarm.c" />
+    <ClCompile Include="src\unistd\chdir.c" />
+    <ClCompile Include="src\unistd\getcwd.c" />
     <ClCompile Include="src\__signal.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\amai_library.h" />
+    <ClInclude Include="include\amai_utility++.hpp" />
     <ClInclude Include="include\amai_utility.h" />
     <ClInclude Include="include\amai_version.h" />
     <ClInclude Include="include\dlfcn.h" />
     <ClInclude Include="include\unistd.h" />
     <ClInclude Include="include\unistd\alarm.h" />
+    <ClInclude Include="include\unistd\chdir.h" />
+    <ClInclude Include="include\unistd\getcwd.h" />
     <ClInclude Include="include\__signal.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
