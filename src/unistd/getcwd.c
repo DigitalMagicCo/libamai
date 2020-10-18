@@ -43,6 +43,8 @@ char* getcwd(char* buf, size_t size)
 	else if (val == 0)
 	{
 		// Since this is a GetLastError situation, what do we set errno to?
+		// but... since POSIX says EACCES is a valid errno value to set for this function...
+		errno = EACCES;
 
 		// POSIX says to clear buf, and to return NULL.
 		buf = NULL;
